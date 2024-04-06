@@ -36,4 +36,6 @@ class AgendaFlowCubit extends Cubit<AgendaFlowState> {
       agendaList: agendaList,
     ));
   }
+
+  void addAgenda(AgendaModel agendaModel) {}
 }

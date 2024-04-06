@@ -6,6 +6,10 @@ import 'package:mock_data/mock_data.dart';
 
 @lazySingleton
 class MockData {
+  List<MemberModel> getMembersList() {
+    return List.generate(20, (index) => _getMemberData(index + 1));
+  }
+
   List<AgendaModel> getAgendaList() {
     return [
       _getAgendaData(daysDiff: 0, hourDiff: -1),

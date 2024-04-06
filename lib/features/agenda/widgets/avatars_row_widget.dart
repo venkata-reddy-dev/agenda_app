@@ -54,19 +54,21 @@ class AvatarsRowWidget extends StatelessWidget {
           return Stack(
             children: [
               ...avatarUrlList.sublist(0, finalSafeSteps).mapIndexed(
-                    (index, url) => Positioned(
-                      left: index * avatarWidth * avatarVisiblePercentage,
+                (index, url) {
+                  return Positioned(
+                    key: Key(avatarUrlList[index]),
+                    left: index * avatarWidth * avatarVisiblePercentage,
+                    child: CircleAvatar(
+                      backgroundColor: borderColor,
+                      radius: avatarWidth / 2,
                       child: CircleAvatar(
-                        backgroundColor: borderColor,
-                        radius: avatarWidth / 2,
-                        child: CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              'https://i.pravatar.cc/150?img=${index + 1}'),
-                          radius: (avatarWidth / 2) - borderWidth,
-                        ),
+                        backgroundImage: NetworkImage(avatarUrlList[index]),
+                        radius: (avatarWidth / 2) - borderWidth,
                       ),
                     ),
-                  ),
+                  );
+                },
+              ),
               if (finalSafeSteps < avatarUrlList.length) ...[
                 Positioned(
                   left:

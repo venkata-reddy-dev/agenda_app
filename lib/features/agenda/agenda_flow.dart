@@ -1,11 +1,12 @@
 import 'package:agenda_app/core/di/di_injectable.dart';
 import 'package:agenda_app/features/agenda/add_agenda/add_agenda.dart';
-import 'package:agenda_app/features/agenda/add_member/add_member.dart';
+import 'package:agenda_app/features/agenda/add_member/add_member_page.dart';
 import 'package:agenda_app/features/agenda/agenda_list/agenda_list_page.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'bloc/agenda_create_cubit.dart';
 import 'bloc/agenda_flow_cubit.dart';
 
 enum AgendaNavState {
@@ -41,13 +42,19 @@ class AgendaFlow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<AgendaFlowCubit>(),
-      child: const FlowBuilder(
-        state: AgendaNavState.initial,
-        onGeneratePages: onGenerateOnboardingPages,
-      ),
-    );
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => sl<AgendaFlowCubit>(),
+          ),
+          BlocProvider(
+            create: (context) => sl<AgendaCreateCubit>(),
+          )
+        ],
+        child: const FlowBuilder(
+          state: AgendaNavState.initial,
+          onGeneratePages: onGenerateOnboardingPages,
+        ));
   }
 }
 

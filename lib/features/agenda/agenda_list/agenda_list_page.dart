@@ -1,6 +1,4 @@
-import 'package:agenda_app/core/di/di_injectable.dart';
 import 'package:agenda_app/features/agenda/agenda_flow.dart';
-import 'package:agenda_app/features/agenda/agenda_list/bloc/agenda_list_cubit.dart';
 import 'package:agenda_app/features/agenda/agenda_list/widgets/widgets.dart';
 import 'package:agenda_app/features/agenda/bloc/agenda_flow_cubit.dart';
 import 'package:flow_builder/flow_builder.dart';
@@ -14,45 +12,34 @@ class AgendaListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<AgendaListCubit>(),
-      child: const Scaffold(
-        body: _BodyWidget(),
-      ),
-    );
-  }
-}
-
-class _BodyWidget extends StatelessWidget {
-  const _BodyWidget();
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            AppBarWidget(
-              title: 'Agenda',
-              onBackTap: () => context.flow<AgendaNavState>().complete(),
-              onAddAgendaTap: () =>
-                  context.read<AgendaListCubit>().createAgenda(),
-            ),
-            const SizedBox(height: 16),
-            Expanded(
-              child: BlocBuilder<AgendaFlowCubit, AgendaFlowState>(
-                builder: (context, state) {
-                  return switch (state) {
-                    Loading() => const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    _ => const TabAndBodyWidget(),
-                  };
-                },
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            children: [
+              AppBarWidget(
+                title: 'Agenda',
+                onBackTap: () => context.flow<AgendaNavState>().complete(),
+                onAddAgendaTap: () => context
+                    .flow<AgendaNavState>()
+                    .update((state) => AgendaNavState.addAgenda),
               ),
-            ),
-          ],
+              const SizedBox(height: 16),
+              Expanded(
+                child: BlocBuilder<AgendaFlowCubit, AgendaFlowState>(
+                  builder: (context, state) {
+                    return switch (state) {
+                      Loading() => const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      _ => const TabAndBodyWidget(),
+                    };
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
