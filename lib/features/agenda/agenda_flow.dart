@@ -1,26 +1,30 @@
+import 'package:agenda_app/core/di/di_injectable.dart';
 import 'package:agenda_app/features/agenda/add_agenda/add_agenda.dart';
 import 'package:agenda_app/features/agenda/add_member/add_member.dart';
 import 'package:agenda_app/features/agenda/agenda_list/agenda_list_page.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-enum AgendaFlowState {
+import 'bloc/agenda_flow_cubit.dart';
+
+enum AgendaNavState {
   initial,
   addAgenda,
   addMembers,
 }
 
 List<Page<dynamic>> onGenerateOnboardingPages(
-  AgendaFlowState state,
+  AgendaNavState state,
   List<Page<dynamic>> pages,
 ) {
   return switch (state) {
-    AgendaFlowState.initial => [AgendaListPage.page()],
-    AgendaFlowState.addAgenda => [
+    AgendaNavState.initial => [AgendaListPage.page()],
+    AgendaNavState.addAgenda => [
         AgendaListPage.page(),
         AddAgendaPage.page(),
       ],
-    AgendaFlowState.addMembers => [
+    AgendaNavState.addMembers => [
         AgendaListPage.page(),
         AddAgendaPage.page(),
         AddMemberPage.page(),
@@ -31,16 +35,18 @@ List<Page<dynamic>> onGenerateOnboardingPages(
 class AgendaFlow extends StatelessWidget {
   const AgendaFlow._();
 
-  static Route<AgendaFlowState> route() {
+  static Route<AgendaNavState> route() {
     return MaterialPageRoute(builder: (_) => const AgendaFlow._());
   }
 
   @override
   Widget build(BuildContext context) {
-    return FlowBuilder(
-      state: AgendaFlowState.initial,
-      observers: [HeroController()],
-      onGeneratePages: onGenerateOnboardingPages,
+    return BlocProvider(
+      create: (context) => sl<AgendaFlowCubit>(),
+      child: const FlowBuilder(
+        state: AgendaNavState.initial,
+        onGeneratePages: onGenerateOnboardingPages,
+      ),
     );
   }
 }

@@ -158,7 +158,7 @@ class __$$AgendaModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AgendaModelImpl implements _AgendaModel {
+class _$AgendaModelImpl extends _AgendaModel {
   const _$AgendaModelImpl(
       {this.title = '',
       this.description = '',
@@ -166,7 +166,8 @@ class _$AgendaModelImpl implements _AgendaModel {
       this.startTime,
       this.endTime,
       final List<MemberModel> memberList = const <MemberModel>[]})
-      : _memberList = memberList;
+      : _memberList = memberList,
+        super._();
 
   @override
   @JsonKey()
@@ -221,7 +222,7 @@ class _$AgendaModelImpl implements _AgendaModel {
       __$$AgendaModelImplCopyWithImpl<_$AgendaModelImpl>(this, _$identity);
 }
 
-abstract class _AgendaModel implements AgendaModel {
+abstract class _AgendaModel extends AgendaModel {
   const factory _AgendaModel(
       {final String title,
       final String description,
@@ -229,6 +230,7 @@ abstract class _AgendaModel implements AgendaModel {
       final TimeOfDay? startTime,
       final TimeOfDay? endTime,
       final List<MemberModel> memberList}) = _$AgendaModelImpl;
+  const _AgendaModel._() : super._();
 
   @override
   String get title;
