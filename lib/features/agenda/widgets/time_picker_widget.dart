@@ -1,3 +1,4 @@
+import 'package:agenda_app/core/extentions/extentions.dart';
 import 'package:flutter/material.dart';
 
 class TimePickerWidget extends StatelessWidget {
@@ -17,8 +18,12 @@ class TimePickerWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label),
-        const SizedBox(height: 8),
+        Text(
+          label,
+          style: context.textTheme.bodyMedium
+              ?.copyWith(fontWeight: FontWeight.w500),
+        ),
+        const SizedBox(height: 16),
         InkWell(
           onTap: () async {
             final timeOfDay = await showTimePicker(
@@ -37,7 +42,10 @@ class TimePickerWidget extends StatelessWidget {
             children: [
               const Icon(Icons.access_alarm),
               const SizedBox(width: 4),
-              Text(selectedTimeOfDay.format(context)),
+              Text(
+                selectedTimeOfDay.format(context),
+                style: context.textTheme.bodyLarge,
+              ),
             ],
           ),
         ),

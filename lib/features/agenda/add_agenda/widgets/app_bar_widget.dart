@@ -1,4 +1,5 @@
 import 'package:agenda_app/core/extentions/extentions.dart';
+import 'package:agenda_app/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class AppBarWidget extends StatelessWidget {
         InkWell(
           onTap: onBackTap,
           child: CircleAvatar(
-            backgroundColor: 'aabbcc'.toColor(),
+            backgroundColor: AppColors.appbarBgDart,
             radius: 20,
             child: const Icon(Icons.arrow_back),
           ),
@@ -25,7 +26,8 @@ class AppBarWidget extends StatelessWidget {
         const Spacer(),
         Text(
           title,
-          style: context.textTheme.headlineSmall?.copyWith(color: Colors.white),
+          style:
+              context.textTheme.headlineSmall?.copyWith(color: AppColors.white),
         ),
         const Spacer(),
         const SizedBox(width: 40),

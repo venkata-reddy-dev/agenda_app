@@ -1,4 +1,5 @@
 import 'package:agenda_app/core/extentions/extentions.dart';
+import 'package:agenda_app/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -55,45 +56,44 @@ class _DateInputWidgetState extends State<DateInputWidget> {
           onDaySelected: (date, _) => widget.onDaySelected(date),
           availableGestures: AvailableGestures.horizontalSwipe,
           calendarStyle: const CalendarStyle(isTodayHighlighted: false),
+          daysOfWeekHeight: 42,
+          rowHeight: 42,
           calendarBuilders: CalendarBuilders(
             dowBuilder: (context, day) {
               final isSelected = day.removeHMS == widget.selectedDay.removeHMS;
               final text = DateFormat.E().format(day).substring(0, 2);
-
-              if (isSelected) {
-                return Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: 'bda800'.toColor(),
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                    ),
-                  ),
-                  child: Text(
-                    text,
-                    style: context.textTheme.bodySmall
-                        ?.copyWith(color: Colors.white),
-                  ),
-                );
-              }
-
-              return Center(
-                child: Text(
-                  text,
-                  style: context.textTheme.bodySmall
-                      ?.copyWith(color: Colors.white),
+              final textWidget = Text(
+                text,
+                style: context.textTheme.bodyMedium?.copyWith(
+                  color: AppColors.white,
+                  fontWeight: FontWeight.w600,
                 ),
               );
+
+              return isSelected
+                  ? Container(
+                      width: double.infinity,
+                      height: double.infinity,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: AppColors.selectedYellow,
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(8),
+                          topRight: Radius.circular(8),
+                        ),
+                      ),
+                      child: textWidget,
+                    )
+                  : Center(child: textWidget);
             },
             defaultBuilder: (_, day, ___) {
               return Center(
                 child: Text(
                   '${day.day}',
-                  style: context.textTheme.bodySmall
-                      ?.copyWith(color: Colors.white),
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    color: AppColors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               );
             },
@@ -105,7 +105,7 @@ class _DateInputWidgetState extends State<DateInputWidget> {
                   height: double.infinity,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: 'bda800'.toColor(),
+                    color: AppColors.selectedYellow,
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(8),
                       bottomRight: Radius.circular(8),
@@ -113,8 +113,10 @@ class _DateInputWidgetState extends State<DateInputWidget> {
                   ),
                   child: Text(
                     '${day.day}',
-                    style: context.textTheme.bodySmall
-                        ?.copyWith(color: Colors.white),
+                    style: context.textTheme.bodySmall?.copyWith(
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 );
               }
@@ -142,13 +144,16 @@ class _CalendarHeader extends StatelessWidget {
     return Row(
       children: [
         Text(
-          selectedDate.toFormat(format: 'dd MMM'),
-          style: context.textTheme.bodyLarge!.copyWith(color: Colors.white),
+          selectedDate.toFormat(format: 'd MMM'),
+          style: context.textTheme.bodyLarge!.copyWith(
+            color: AppColors.white,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         IconButton(
           icon: const Icon(
             Icons.chevron_left,
-            color: Colors.white,
+            color: AppColors.white,
             size: 30,
           ),
           onPressed: onLeftArrowTap,
@@ -156,7 +161,7 @@ class _CalendarHeader extends StatelessWidget {
         IconButton(
           icon: const Icon(
             Icons.chevron_right,
-            color: Colors.white,
+            color: AppColors.white,
             size: 30,
           ),
           onPressed: onRightArrowTap,

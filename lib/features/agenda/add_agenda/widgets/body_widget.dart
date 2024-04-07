@@ -1,4 +1,5 @@
 import 'package:agenda_app/core/extentions/extentions.dart';
+import 'package:agenda_app/core/utils/app_colors.dart';
 import 'package:agenda_app/features/agenda/add_agenda/widgets/time_input_widget.dart';
 import 'package:agenda_app/features/agenda/agenda_flow.dart';
 import 'package:agenda_app/features/agenda/bloc/agenda_create_cubit.dart';
@@ -12,19 +13,18 @@ class BodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        constraints:
-            BoxConstraints(minHeight: MediaQuery.of(context).size.height),
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(32),
-            topLeft: Radius.circular(32),
-          ),
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(32),
+          topLeft: Radius.circular(32),
         ),
-        child: const Padding(
+      ),
+      child: const SingleChildScrollView(
+        child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
@@ -32,6 +32,7 @@ class BodyWidget extends StatelessWidget {
               _TitleInputWidget(),
               SizedBox(height: 16),
               TimeInputWidget(),
+              Divider(color: AppColors.divider),
               SizedBox(height: 16),
               _SelectMembersInputWidget(),
               SizedBox(height: 16),
@@ -48,7 +49,7 @@ class BodyWidget extends StatelessWidget {
 }
 
 class _TitleInputWidget extends StatelessWidget {
-  const _TitleInputWidget({super.key});
+  const _TitleInputWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,13 @@ class _TitleInputWidget extends StatelessWidget {
         .select<AgendaCreateCubit, String?>((bloc) => bloc.state.titleErrorMsg);
     return TextFormField(
       onChanged: (_) => context.read<AgendaCreateCubit>().updateTitle(_),
-      decoration: InputDecoration(hintText: 'Title *', errorText: errorMsg),
+      decoration: InputDecoration(
+        hintText: 'Title *',
+        errorText: errorMsg,
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: AppColors.divider),
+        ),
+      ),
     );
   }
 }
@@ -70,14 +77,19 @@ class _DescInputWidget extends StatelessWidget {
         .select<AgendaCreateCubit, String?>((bloc) => bloc.state.titleErrorMsg);
     return TextFormField(
       onChanged: (_) => context.read<AgendaCreateCubit>().updateDesc(_),
-      decoration:
-          InputDecoration(hintText: 'Description *', errorText: errorMsg),
+      decoration: InputDecoration(
+        hintText: 'Description *',
+        errorText: errorMsg,
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: AppColors.divider),
+        ),
+      ),
     );
   }
 }
 
 class _SelectMembersInputWidget extends StatelessWidget {
-  const _SelectMembersInputWidget({super.key});
+  const _SelectMembersInputWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -95,22 +107,27 @@ class _SelectMembersInputWidget extends StatelessWidget {
           child: Row(
             children: [
               const CircleAvatar(
+                radius: 24,
                 child: Icon(
                   Icons.people,
-                  color: Colors.blue,
+                  color: AppColors.blue,
                 ),
               ),
               const SizedBox(width: 16),
-              const Text('Presenters/Speakers'),
+              Text(
+                'Presenters/Speakers',
+                style: context.textTheme.bodyMedium
+                    ?.copyWith(fontWeight: FontWeight.w500),
+              ),
               if (count > 0) ...[
                 const SizedBox(width: 16),
                 CircleAvatar(
-                  backgroundColor: Colors.blue,
-                  radius: 20,
+                  backgroundColor: AppColors.blue,
+                  radius: 16,
                   child: Text(
                     '+$count',
-                    style: context.textTheme.bodyLarge
-                        ?.copyWith(color: Colors.white),
+                    style: context.textTheme.bodyMedium
+                        ?.copyWith(color: AppColors.white),
                   ),
                 ),
               ],
@@ -119,7 +136,10 @@ class _SelectMembersInputWidget extends StatelessWidget {
         ),
         if (errorMsg != null) ...[
           const SizedBox(height: 12),
-          Text(errorMsg),
+          Text(
+            errorMsg,
+            style: context.textTheme.bodyMedium?.copyWith(color: Colors.red),
+          ),
         ],
       ],
     );
@@ -127,15 +147,13 @@ class _SelectMembersInputWidget extends StatelessWidget {
 }
 
 class _AddCtaWidget extends StatelessWidget {
-  const _AddCtaWidget({super.key});
+  const _AddCtaWidget();
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue, foregroundColor: Colors.white),
         onPressed: () {
           final agendaModel = context.read<AgendaCreateCubit>().validateData();
           if (agendaModel == null) {
@@ -146,7 +164,23 @@ class _AddCtaWidget extends StatelessWidget {
               .flow<AgendaNavState>()
               .update((state) => AgendaNavState.initial);
         },
-        child: const Text('Add'),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.blue,
+          foregroundColor: AppColors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 6),
+          child: Text(
+            'Add',
+            style: context.textTheme.headlineSmall?.copyWith(
+              fontSize: 22,
+              color: AppColors.white,
+            ),
+          ),
+        ),
       ),
     );
   }

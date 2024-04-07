@@ -1,5 +1,5 @@
 import 'package:agenda_app/core/di/di_injectable.dart';
-import 'package:agenda_app/features/agenda/add_agenda/add_agenda.dart';
+import 'package:agenda_app/features/agenda/add_agenda/add_agenda_page.dart';
 import 'package:agenda_app/features/agenda/add_member/add_member_page.dart';
 import 'package:agenda_app/features/agenda/agenda_list/agenda_list_page.dart';
 import 'package:flow_builder/flow_builder.dart';

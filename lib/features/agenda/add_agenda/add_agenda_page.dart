@@ -1,4 +1,5 @@
 import 'package:agenda_app/core/extentions/extentions.dart';
+import 'package:agenda_app/core/utils/app_colors.dart';
 import 'package:agenda_app/features/agenda/add_agenda/widgets/app_bar_widget.dart';
 import 'package:agenda_app/features/agenda/add_agenda/widgets/body_widget.dart';
 import 'package:agenda_app/features/agenda/agenda_flow.dart';
@@ -15,7 +16,7 @@ class AddAgendaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.theme.colorScheme.inverseSurface,
+      backgroundColor: AppColors.darkBg,
       body: SafeArea(
         child: Column(
           children: [
@@ -24,14 +25,14 @@ class AddAgendaPage extends StatelessWidget {
               child: Column(
                 children: [
                   AppBarWidget(
-                    title: 'Agenda',
+                    title: 'Add Agenda',
                     onBackTap: () => context
                         .flow<AgendaNavState>()
                         .update((state) => AgendaNavState.initial),
                   ),
                   const SizedBox(height: 12),
                   const _CalenderView(),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 16),
                 ],
               ),
             ),
@@ -44,7 +45,7 @@ class AddAgendaPage extends StatelessWidget {
 }
 
 class _CalenderView extends StatelessWidget {
-  const _CalenderView({super.key});
+  const _CalenderView();
 
   @override
   Widget build(BuildContext context) {

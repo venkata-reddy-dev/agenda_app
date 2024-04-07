@@ -1,3 +1,4 @@
+import 'package:agenda_app/core/extentions/extentions.dart';
 import 'package:agenda_app/features/agenda/bloc/agenda_create_cubit.dart';
 import 'package:agenda_app/features/agenda/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,6 @@ class TimeInputWidget extends StatelessWidget {
       children: [
         const Row(
           children: [
-            SizedBox(width: 12),
             _StartTimeInputWidget(),
             Spacer(),
             _EndTimeInputWidget(),
@@ -23,7 +23,10 @@ class TimeInputWidget extends StatelessWidget {
         ),
         if (errorMsg != null) ...[
           const SizedBox(height: 12),
-          Text(errorMsg),
+          Text(
+            errorMsg,
+            style: context.textTheme.bodyMedium?.copyWith(color: Colors.red),
+          ),
         ],
       ],
     );
