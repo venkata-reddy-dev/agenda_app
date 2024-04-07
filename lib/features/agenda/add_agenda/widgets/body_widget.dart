@@ -159,9 +159,7 @@ class _AddCtaWidget extends StatelessWidget {
             return;
           }
           context.read<AgendaFlowCubit>().addAgenda(agendaModel);
-          context
-              .flow<AgendaNavState>()
-              .update((state) => AgendaNavState.initial);
+          Navigator.of(context).pop();
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.blue,

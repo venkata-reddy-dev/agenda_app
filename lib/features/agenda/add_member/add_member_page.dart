@@ -5,7 +5,6 @@ import 'package:agenda_app/features/agenda/add_member/widgets/widgets.dart';
 import 'package:agenda_app/features/agenda/agenda_flow.dart';
 import 'package:agenda_app/features/agenda/bloc/agenda_add_cubit.dart';
 import 'package:agenda_app/features/agenda/widgets/avatars_row_widget.dart';
-import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,9 +24,7 @@ class AddMemberPage extends StatelessWidget {
             children: [
               AppBarWidget(
                 title: 'Add Member/Guest',
-                onBackTap: () => context
-                    .flow<AgendaNavState>()
-                    .update((state) => AgendaNavState.addAgenda),
+                onBackTap: () => Navigator.of(context).pop(),
               ),
               const SizedBox(height: 8),
               const _SearchInputWidget(),
@@ -123,9 +120,7 @@ class _CtaWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(backgroundColor: AppColors.blue),
-        onPressed: () => context
-            .flow<AgendaNavState>()
-            .update((state) => AgendaNavState.addAgenda),
+        onPressed: () => Navigator.of(context).pop(),
         child: const Icon(
           Icons.arrow_forward,
           color: AppColors.white,

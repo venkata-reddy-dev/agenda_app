@@ -5,7 +5,6 @@ import 'package:agenda_app/features/agenda/add_agenda/widgets/body_widget.dart';
 import 'package:agenda_app/features/agenda/agenda_flow.dart';
 import 'package:agenda_app/features/agenda/bloc/agenda_add_cubit.dart';
 import 'package:agenda_app/features/agenda/widgets/widgets.dart';
-import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,9 +25,7 @@ class AddAgendaPage extends StatelessWidget {
                 children: [
                   AppBarWidget(
                     title: 'Add Agenda',
-                    onBackTap: () => context
-                        .flow<AgendaNavState>()
-                        .update((state) => AgendaNavState.initial),
+                    onBackTap: () => Navigator.of(context).pop(),
                   ),
                   const SizedBox(height: 12),
                   const _CalenderView(),
