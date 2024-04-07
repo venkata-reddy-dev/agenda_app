@@ -16,13 +16,18 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AgendaCreateState {
+  List<MemberModel> get membersList => throw _privateConstructorUsedError;
   List<MemberModel> get selectedMembersList =>
       throw _privateConstructorUsedError;
-  List<MemberModel> get membersList => throw _privateConstructorUsedError;
+  String? get selectedMembersErrorMsg => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String? get titleErrorMsg => throw _privateConstructorUsedError;
   String get desc => throw _privateConstructorUsedError;
   String? get descErrorMsg => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
+  TimeOfDay get startTime => throw _privateConstructorUsedError;
+  TimeOfDay get endTime => throw _privateConstructorUsedError;
+  String? get timeErrorMsg => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AgendaCreateStateCopyWith<AgendaCreateState> get copyWith =>
@@ -36,12 +41,17 @@ abstract class $AgendaCreateStateCopyWith<$Res> {
       _$AgendaCreateStateCopyWithImpl<$Res, AgendaCreateState>;
   @useResult
   $Res call(
-      {List<MemberModel> selectedMembersList,
-      List<MemberModel> membersList,
+      {List<MemberModel> membersList,
+      List<MemberModel> selectedMembersList,
+      String? selectedMembersErrorMsg,
       String title,
       String? titleErrorMsg,
       String desc,
-      String? descErrorMsg});
+      String? descErrorMsg,
+      DateTime date,
+      TimeOfDay startTime,
+      TimeOfDay endTime,
+      String? timeErrorMsg});
 }
 
 /// @nodoc
@@ -57,22 +67,31 @@ class _$AgendaCreateStateCopyWithImpl<$Res, $Val extends AgendaCreateState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedMembersList = null,
     Object? membersList = null,
+    Object? selectedMembersList = null,
+    Object? selectedMembersErrorMsg = freezed,
     Object? title = null,
     Object? titleErrorMsg = freezed,
     Object? desc = null,
     Object? descErrorMsg = freezed,
+    Object? date = null,
+    Object? startTime = null,
+    Object? endTime = null,
+    Object? timeErrorMsg = freezed,
   }) {
     return _then(_value.copyWith(
-      selectedMembersList: null == selectedMembersList
-          ? _value.selectedMembersList
-          : selectedMembersList // ignore: cast_nullable_to_non_nullable
-              as List<MemberModel>,
       membersList: null == membersList
           ? _value.membersList
           : membersList // ignore: cast_nullable_to_non_nullable
               as List<MemberModel>,
+      selectedMembersList: null == selectedMembersList
+          ? _value.selectedMembersList
+          : selectedMembersList // ignore: cast_nullable_to_non_nullable
+              as List<MemberModel>,
+      selectedMembersErrorMsg: freezed == selectedMembersErrorMsg
+          ? _value.selectedMembersErrorMsg
+          : selectedMembersErrorMsg // ignore: cast_nullable_to_non_nullable
+              as String?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -88,6 +107,22 @@ class _$AgendaCreateStateCopyWithImpl<$Res, $Val extends AgendaCreateState>
       descErrorMsg: freezed == descErrorMsg
           ? _value.descErrorMsg
           : descErrorMsg // ignore: cast_nullable_to_non_nullable
+              as String?,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      startTime: null == startTime
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay,
+      endTime: null == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay,
+      timeErrorMsg: freezed == timeErrorMsg
+          ? _value.timeErrorMsg
+          : timeErrorMsg // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -102,12 +137,17 @@ abstract class _$$InitialImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<MemberModel> selectedMembersList,
-      List<MemberModel> membersList,
+      {List<MemberModel> membersList,
+      List<MemberModel> selectedMembersList,
+      String? selectedMembersErrorMsg,
       String title,
       String? titleErrorMsg,
       String desc,
-      String? descErrorMsg});
+      String? descErrorMsg,
+      DateTime date,
+      TimeOfDay startTime,
+      TimeOfDay endTime,
+      String? timeErrorMsg});
 }
 
 /// @nodoc
@@ -121,22 +161,31 @@ class __$$InitialImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? selectedMembersList = null,
     Object? membersList = null,
+    Object? selectedMembersList = null,
+    Object? selectedMembersErrorMsg = freezed,
     Object? title = null,
     Object? titleErrorMsg = freezed,
     Object? desc = null,
     Object? descErrorMsg = freezed,
+    Object? date = null,
+    Object? startTime = null,
+    Object? endTime = null,
+    Object? timeErrorMsg = freezed,
   }) {
     return _then(_$InitialImpl(
-      selectedMembersList: null == selectedMembersList
-          ? _value._selectedMembersList
-          : selectedMembersList // ignore: cast_nullable_to_non_nullable
-              as List<MemberModel>,
       membersList: null == membersList
           ? _value._membersList
           : membersList // ignore: cast_nullable_to_non_nullable
               as List<MemberModel>,
+      selectedMembersList: null == selectedMembersList
+          ? _value._selectedMembersList
+          : selectedMembersList // ignore: cast_nullable_to_non_nullable
+              as List<MemberModel>,
+      selectedMembersErrorMsg: freezed == selectedMembersErrorMsg
+          ? _value.selectedMembersErrorMsg
+          : selectedMembersErrorMsg // ignore: cast_nullable_to_non_nullable
+              as String?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -153,22 +202,52 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.descErrorMsg
           : descErrorMsg // ignore: cast_nullable_to_non_nullable
               as String?,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      startTime: null == startTime
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay,
+      endTime: null == endTime
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay,
+      timeErrorMsg: freezed == timeErrorMsg
+          ? _value.timeErrorMsg
+          : timeErrorMsg // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
+class _$InitialImpl extends _Initial {
   const _$InitialImpl(
-      {required final List<MemberModel> selectedMembersList,
-      required final List<MemberModel> membersList,
+      {required final List<MemberModel> membersList,
+      required final List<MemberModel> selectedMembersList,
+      this.selectedMembersErrorMsg,
       this.title = '',
       this.titleErrorMsg,
       this.desc = '',
-      this.descErrorMsg})
-      : _selectedMembersList = selectedMembersList,
-        _membersList = membersList;
+      this.descErrorMsg,
+      required this.date,
+      required this.startTime,
+      required this.endTime,
+      this.timeErrorMsg})
+      : _membersList = membersList,
+        _selectedMembersList = selectedMembersList,
+        super._();
+
+  final List<MemberModel> _membersList;
+  @override
+  List<MemberModel> get membersList {
+    if (_membersList is EqualUnmodifiableListView) return _membersList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_membersList);
+  }
 
   final List<MemberModel> _selectedMembersList;
   @override
@@ -179,14 +258,8 @@ class _$InitialImpl implements _Initial {
     return EqualUnmodifiableListView(_selectedMembersList);
   }
 
-  final List<MemberModel> _membersList;
   @override
-  List<MemberModel> get membersList {
-    if (_membersList is EqualUnmodifiableListView) return _membersList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_membersList);
-  }
-
+  final String? selectedMembersErrorMsg;
   @override
   @JsonKey()
   final String title;
@@ -197,10 +270,18 @@ class _$InitialImpl implements _Initial {
   final String desc;
   @override
   final String? descErrorMsg;
+  @override
+  final DateTime date;
+  @override
+  final TimeOfDay startTime;
+  @override
+  final TimeOfDay endTime;
+  @override
+  final String? timeErrorMsg;
 
   @override
   String toString() {
-    return 'AgendaCreateState(selectedMembersList: $selectedMembersList, membersList: $membersList, title: $title, titleErrorMsg: $titleErrorMsg, desc: $desc, descErrorMsg: $descErrorMsg)';
+    return 'AgendaCreateState(membersList: $membersList, selectedMembersList: $selectedMembersList, selectedMembersErrorMsg: $selectedMembersErrorMsg, title: $title, titleErrorMsg: $titleErrorMsg, desc: $desc, descErrorMsg: $descErrorMsg, date: $date, startTime: $startTime, endTime: $endTime, timeErrorMsg: $timeErrorMsg)';
   }
 
   @override
@@ -209,26 +290,40 @@ class _$InitialImpl implements _Initial {
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
             const DeepCollectionEquality()
-                .equals(other._selectedMembersList, _selectedMembersList) &&
-            const DeepCollectionEquality()
                 .equals(other._membersList, _membersList) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedMembersList, _selectedMembersList) &&
+            (identical(
+                    other.selectedMembersErrorMsg, selectedMembersErrorMsg) ||
+                other.selectedMembersErrorMsg == selectedMembersErrorMsg) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.titleErrorMsg, titleErrorMsg) ||
                 other.titleErrorMsg == titleErrorMsg) &&
             (identical(other.desc, desc) || other.desc == desc) &&
             (identical(other.descErrorMsg, descErrorMsg) ||
-                other.descErrorMsg == descErrorMsg));
+                other.descErrorMsg == descErrorMsg) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.startTime, startTime) ||
+                other.startTime == startTime) &&
+            (identical(other.endTime, endTime) || other.endTime == endTime) &&
+            (identical(other.timeErrorMsg, timeErrorMsg) ||
+                other.timeErrorMsg == timeErrorMsg));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_selectedMembersList),
       const DeepCollectionEquality().hash(_membersList),
+      const DeepCollectionEquality().hash(_selectedMembersList),
+      selectedMembersErrorMsg,
       title,
       titleErrorMsg,
       desc,
-      descErrorMsg);
+      descErrorMsg,
+      date,
+      startTime,
+      endTime,
+      timeErrorMsg);
 
   @JsonKey(ignore: true)
   @override
@@ -237,19 +332,27 @@ class _$InitialImpl implements _Initial {
       __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
 }
 
-abstract class _Initial implements AgendaCreateState {
+abstract class _Initial extends AgendaCreateState {
   const factory _Initial(
-      {required final List<MemberModel> selectedMembersList,
-      required final List<MemberModel> membersList,
+      {required final List<MemberModel> membersList,
+      required final List<MemberModel> selectedMembersList,
+      final String? selectedMembersErrorMsg,
       final String title,
       final String? titleErrorMsg,
       final String desc,
-      final String? descErrorMsg}) = _$InitialImpl;
+      final String? descErrorMsg,
+      required final DateTime date,
+      required final TimeOfDay startTime,
+      required final TimeOfDay endTime,
+      final String? timeErrorMsg}) = _$InitialImpl;
+  const _Initial._() : super._();
 
+  @override
+  List<MemberModel> get membersList;
   @override
   List<MemberModel> get selectedMembersList;
   @override
-  List<MemberModel> get membersList;
+  String? get selectedMembersErrorMsg;
   @override
   String get title;
   @override
@@ -258,6 +361,14 @@ abstract class _Initial implements AgendaCreateState {
   String get desc;
   @override
   String? get descErrorMsg;
+  @override
+  DateTime get date;
+  @override
+  TimeOfDay get startTime;
+  @override
+  TimeOfDay get endTime;
+  @override
+  String? get timeErrorMsg;
   @override
   @JsonKey(ignore: true)
   _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>

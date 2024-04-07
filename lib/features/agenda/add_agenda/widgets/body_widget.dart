@@ -1,4 +1,5 @@
 import 'package:agenda_app/core/extentions/extentions.dart';
+import 'package:agenda_app/features/agenda/add_agenda/widgets/time_input_widget.dart';
 import 'package:agenda_app/features/agenda/agenda_flow.dart';
 import 'package:agenda_app/features/agenda/bloc/agenda_create_cubit.dart';
 import 'package:agenda_app/features/agenda/bloc/agenda_flow_cubit.dart';
@@ -30,11 +31,13 @@ class BodyWidget extends StatelessWidget {
               SizedBox(height: 62),
               _TitleInputWidget(),
               SizedBox(height: 16),
+              TimeInputWidget(),
+              SizedBox(height: 16),
               _SelectMembersInputWidget(),
               SizedBox(height: 16),
               _DescInputWidget(),
               SizedBox(height: 16),
-              SizedBox(height: 200),
+              SizedBox(height: 32),
               _AddCtaWidget(),
             ],
           ),
@@ -80,35 +83,45 @@ class _SelectMembersInputWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final count = context.select<AgendaCreateCubit, int>(
         (bloc) => bloc.state.selectedMembersList.length);
+    final errorMsg = context.select<AgendaCreateCubit, String?>(
+        (bloc) => bloc.state.selectedMembersErrorMsg);
 
-    return InkWell(
-      onTap: () => context
-          .flow<AgendaNavState>()
-          .update((state) => AgendaNavState.addMembers),
-      child: Row(
-        children: [
-          const CircleAvatar(
-            child: Icon(
-              Icons.people,
-              color: Colors.blue,
-            ),
-          ),
-          const SizedBox(width: 16),
-          const Text('Presenters/Speakers'),
-          if (count > 0) ...[
-            const SizedBox(width: 16),
-            CircleAvatar(
-              backgroundColor: Colors.blue,
-              radius: 20,
-              child: Text(
-                '+$count',
-                style:
-                    context.textTheme.bodyLarge?.copyWith(color: Colors.white),
+    return Column(
+      children: [
+        InkWell(
+          onTap: () => context
+              .flow<AgendaNavState>()
+              .update((state) => AgendaNavState.addMembers),
+          child: Row(
+            children: [
+              const CircleAvatar(
+                child: Icon(
+                  Icons.people,
+                  color: Colors.blue,
+                ),
               ),
-            ),
-          ],
+              const SizedBox(width: 16),
+              const Text('Presenters/Speakers'),
+              if (count > 0) ...[
+                const SizedBox(width: 16),
+                CircleAvatar(
+                  backgroundColor: Colors.blue,
+                  radius: 20,
+                  child: Text(
+                    '+$count',
+                    style: context.textTheme.bodyLarge
+                        ?.copyWith(color: Colors.white),
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+        if (errorMsg != null) ...[
+          const SizedBox(height: 12),
+          Text(errorMsg),
         ],
-      ),
+      ],
     );
   }
 }
@@ -129,6 +142,9 @@ class _AddCtaWidget extends StatelessWidget {
             return;
           }
           context.read<AgendaFlowCubit>().addAgenda(agendaModel);
+          context
+              .flow<AgendaNavState>()
+              .update((state) => AgendaNavState.initial);
         },
         child: const Text('Add'),
       ),

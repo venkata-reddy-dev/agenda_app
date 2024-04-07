@@ -37,5 +37,23 @@ class AgendaFlowCubit extends Cubit<AgendaFlowState> {
     ));
   }
 
-  void addAgenda(AgendaModel agendaModel) {}
+  void addAgenda(AgendaModel agendaModel) {
+    final s = state as Loaded;
+
+    final agendaList = [
+      ...s.agendaList,
+      agendaModel,
+    ];
+    agendaList.sort((a, b) => a.date.compareTo(b.date));
+
+    final map = groupBy(agendaList, (agenda) => agenda.date);
+    final tabs = map.keys.indexed
+        .map((r) => (id: r.$1 + 1, date: r.$2, dataList: map[r.$2] ?? []))
+        .toList();
+
+    emit(AgendaFlowState.loaded(
+      tabs: tabs,
+      agendaList: agendaList,
+    ));
+  }
 }

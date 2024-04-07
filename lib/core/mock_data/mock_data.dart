@@ -15,8 +15,6 @@ class MockData {
       _getAgendaData(daysDiff: 0, hourDiff: -1),
       _getAgendaData(daysDiff: 0, hourDiff: 0),
       _getAgendaData(daysDiff: 0, hourDiff: 1),
-      _getAgendaData(daysDiff: 0, hourDiff: 2),
-      _getAgendaData(daysDiff: 0, hourDiff: 3),
       _getAgendaData(daysDiff: 1, hourDiff: 0),
       _getAgendaData(daysDiff: 1, hourDiff: 1),
       _getAgendaData(daysDiff: 1, hourDiff: 2),
