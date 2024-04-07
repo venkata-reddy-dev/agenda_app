@@ -6,7 +6,7 @@ import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'bloc/agenda_create_cubit.dart';
+import 'bloc/agenda_add_cubit.dart';
 import 'bloc/agenda_flow_cubit.dart';
 
 enum AgendaNavState {
@@ -30,7 +30,7 @@ class AgendaFlow extends StatelessWidget {
           create: (context) => sl<AgendaFlowCubit>(),
         ),
         BlocProvider(
-          create: (context) => sl<AgendaCreateCubit>(),
+          create: (context) => sl<AgendaAddCubit>(),
         )
       ],
       child: const FlowBuilder(

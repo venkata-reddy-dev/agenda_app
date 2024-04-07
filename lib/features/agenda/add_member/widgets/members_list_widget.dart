@@ -1,7 +1,7 @@
 import 'package:agenda_app/core/extentions/extentions.dart';
 import 'package:agenda_app/core/models/models.dart';
 import 'package:agenda_app/core/utils/app_colors.dart';
-import 'package:agenda_app/features/agenda/bloc/agenda_create_cubit.dart';
+import 'package:agenda_app/features/agenda/bloc/agenda_add_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,7 +10,7 @@ class MemberListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AgendaCreateCubit, AgendaCreateState>(
+    return BlocBuilder<AgendaAddCubit, AgendaAddState>(
       builder: (context, state) {
         return ListView.separated(
           itemBuilder: (_, index) =>
@@ -29,13 +29,13 @@ class _MemberTileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isSelected = context.select<AgendaCreateCubit, bool>(
+    final isSelected = context.select<AgendaAddCubit, bool>(
         (bloc) => bloc.state.selectedMembersList.contains(memberModel));
 
     return ListTile(
       onTap: isSelected
-          ? () => context.read<AgendaCreateCubit>().unSelectMember(memberModel)
-          : () => context.read<AgendaCreateCubit>().selectMember(memberModel),
+          ? () => context.read<AgendaAddCubit>().unSelectMember(memberModel)
+          : () => context.read<AgendaAddCubit>().selectMember(memberModel),
       trailing: isSelected
           ? const Icon(
               Icons.check_circle_outline,

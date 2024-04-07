@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'agenda_create_cubit.dart';
+part of 'agenda_add_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$AgendaCreateState {
+mixin _$AgendaAddState {
   List<MemberModel> get membersList => throw _privateConstructorUsedError;
   List<MemberModel> get selectedMembersList =>
       throw _privateConstructorUsedError;
@@ -30,15 +30,15 @@ mixin _$AgendaCreateState {
   String? get timeErrorMsg => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AgendaCreateStateCopyWith<AgendaCreateState> get copyWith =>
+  $AgendaAddStateCopyWith<AgendaAddState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AgendaCreateStateCopyWith<$Res> {
-  factory $AgendaCreateStateCopyWith(
-          AgendaCreateState value, $Res Function(AgendaCreateState) then) =
-      _$AgendaCreateStateCopyWithImpl<$Res, AgendaCreateState>;
+abstract class $AgendaAddStateCopyWith<$Res> {
+  factory $AgendaAddStateCopyWith(
+          AgendaAddState value, $Res Function(AgendaAddState) then) =
+      _$AgendaAddStateCopyWithImpl<$Res, AgendaAddState>;
   @useResult
   $Res call(
       {List<MemberModel> membersList,
@@ -55,9 +55,9 @@ abstract class $AgendaCreateStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AgendaCreateStateCopyWithImpl<$Res, $Val extends AgendaCreateState>
-    implements $AgendaCreateStateCopyWith<$Res> {
-  _$AgendaCreateStateCopyWithImpl(this._value, this._then);
+class _$AgendaAddStateCopyWithImpl<$Res, $Val extends AgendaAddState>
+    implements $AgendaAddStateCopyWith<$Res> {
+  _$AgendaAddStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -130,7 +130,7 @@ class _$AgendaCreateStateCopyWithImpl<$Res, $Val extends AgendaCreateState>
 
 /// @nodoc
 abstract class _$$InitialImplCopyWith<$Res>
-    implements $AgendaCreateStateCopyWith<$Res> {
+    implements $AgendaAddStateCopyWith<$Res> {
   factory _$$InitialImplCopyWith(
           _$InitialImpl value, $Res Function(_$InitialImpl) then) =
       __$$InitialImplCopyWithImpl<$Res>;
@@ -152,7 +152,7 @@ abstract class _$$InitialImplCopyWith<$Res>
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$AgendaCreateStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$AgendaAddStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -281,7 +281,7 @@ class _$InitialImpl extends _Initial {
 
   @override
   String toString() {
-    return 'AgendaCreateState(membersList: $membersList, selectedMembersList: $selectedMembersList, selectedMembersErrorMsg: $selectedMembersErrorMsg, title: $title, titleErrorMsg: $titleErrorMsg, desc: $desc, descErrorMsg: $descErrorMsg, date: $date, startTime: $startTime, endTime: $endTime, timeErrorMsg: $timeErrorMsg)';
+    return 'AgendaAddState(membersList: $membersList, selectedMembersList: $selectedMembersList, selectedMembersErrorMsg: $selectedMembersErrorMsg, title: $title, titleErrorMsg: $titleErrorMsg, desc: $desc, descErrorMsg: $descErrorMsg, date: $date, startTime: $startTime, endTime: $endTime, timeErrorMsg: $timeErrorMsg)';
   }
 
   @override
@@ -332,7 +332,7 @@ class _$InitialImpl extends _Initial {
       __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
 }
 
-abstract class _Initial extends AgendaCreateState {
+abstract class _Initial extends AgendaAddState {
   const factory _Initial(
       {required final List<MemberModel> membersList,
       required final List<MemberModel> selectedMembersList,

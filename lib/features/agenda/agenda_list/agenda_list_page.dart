@@ -1,6 +1,6 @@
 import 'package:agenda_app/features/agenda/agenda_flow.dart';
 import 'package:agenda_app/features/agenda/agenda_list/widgets/widgets.dart';
-import 'package:agenda_app/features/agenda/bloc/agenda_create_cubit.dart';
+import 'package:agenda_app/features/agenda/bloc/agenda_add_cubit.dart';
 import 'package:agenda_app/features/agenda/bloc/agenda_flow_cubit.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ class AgendaListPage extends StatelessWidget {
                 title: 'Agenda',
                 onBackTap: () => context.flow<AgendaNavState>().complete(),
                 onAddAgendaTap: () {
-                  context.read<AgendaCreateCubit>().startFresh();
+                  context.read<AgendaAddCubit>().startFresh();
                   context
                       .flow<AgendaNavState>()
                       .update((state) => AgendaNavState.addAgenda);

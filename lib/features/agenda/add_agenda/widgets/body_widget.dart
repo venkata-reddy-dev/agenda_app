@@ -2,7 +2,7 @@ import 'package:agenda_app/core/extentions/extentions.dart';
 import 'package:agenda_app/core/utils/app_colors.dart';
 import 'package:agenda_app/features/agenda/add_agenda/widgets/time_input_widget.dart';
 import 'package:agenda_app/features/agenda/agenda_flow.dart';
-import 'package:agenda_app/features/agenda/bloc/agenda_create_cubit.dart';
+import 'package:agenda_app/features/agenda/bloc/agenda_add_cubit.dart';
 import 'package:agenda_app/features/agenda/bloc/agenda_flow_cubit.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
@@ -37,8 +37,7 @@ class BodyWidget extends StatelessWidget {
               _SelectMembersInputWidget(),
               SizedBox(height: 16),
               _DescInputWidget(),
-              SizedBox(height: 16),
-              SizedBox(height: 32),
+              SizedBox(height: 48),
               _AddCtaWidget(),
             ],
           ),
@@ -54,9 +53,9 @@ class _TitleInputWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final errorMsg = context
-        .select<AgendaCreateCubit, String?>((bloc) => bloc.state.titleErrorMsg);
+        .select<AgendaAddCubit, String?>((bloc) => bloc.state.titleErrorMsg);
     return TextFormField(
-      onChanged: (_) => context.read<AgendaCreateCubit>().updateTitle(_),
+      onChanged: (_) => context.read<AgendaAddCubit>().updateTitle(_),
       decoration: InputDecoration(
         hintText: 'Title *',
         errorText: errorMsg,
@@ -74,9 +73,9 @@ class _DescInputWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final errorMsg = context
-        .select<AgendaCreateCubit, String?>((bloc) => bloc.state.titleErrorMsg);
+        .select<AgendaAddCubit, String?>((bloc) => bloc.state.descErrorMsg);
     return TextFormField(
-      onChanged: (_) => context.read<AgendaCreateCubit>().updateDesc(_),
+      onChanged: (_) => context.read<AgendaAddCubit>().updateDesc(_),
       decoration: InputDecoration(
         hintText: 'Description *',
         errorText: errorMsg,
@@ -93,9 +92,9 @@ class _SelectMembersInputWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final count = context.select<AgendaCreateCubit, int>(
+    final count = context.select<AgendaAddCubit, int>(
         (bloc) => bloc.state.selectedMembersList.length);
-    final errorMsg = context.select<AgendaCreateCubit, String?>(
+    final errorMsg = context.select<AgendaAddCubit, String?>(
         (bloc) => bloc.state.selectedMembersErrorMsg);
 
     return Column(
@@ -155,7 +154,7 @@ class _AddCtaWidget extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          final agendaModel = context.read<AgendaCreateCubit>().validateData();
+          final agendaModel = context.read<AgendaAddCubit>().validateData();
           if (agendaModel == null) {
             return;
           }

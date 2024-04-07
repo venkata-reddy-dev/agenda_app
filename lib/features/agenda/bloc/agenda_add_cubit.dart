@@ -7,16 +7,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-part 'agenda_create_cubit.freezed.dart';
-part 'agenda_create_state.dart';
+part 'agenda_add_cubit.freezed.dart';
+part 'agenda_add_state.dart';
 
 @injectable
-class AgendaCreateCubit extends Cubit<AgendaCreateState> {
+class AgendaAddCubit extends Cubit<AgendaAddState> {
   final MockData mockData;
 
-  AgendaCreateCubit({required this.mockData})
+  AgendaAddCubit({required this.mockData})
       : super(
-          AgendaCreateState(
+          AgendaAddState(
             date: DateTime.now().removeHMS,
             selectedMembersList: [],
             membersList: mockData.getMembersList(),
@@ -26,7 +26,7 @@ class AgendaCreateCubit extends Cubit<AgendaCreateState> {
         );
 
   void startFresh() {
-    final state = AgendaCreateState(
+    final state = AgendaAddState(
       date: DateTime.now().removeHMS,
       selectedMembersList: [],
       membersList: mockData.getMembersList(),
@@ -78,7 +78,8 @@ class AgendaCreateCubit extends Cubit<AgendaCreateState> {
 
   AgendaModel? validateData() {
     var errorState = state.copyWith(
-        timeErrorMsg: state.title.isEmpty ? 'Title should not be empty' : null);
+        titleErrorMsg:
+            state.title.isEmpty ? 'Title should not be empty' : null);
 
     String? timeErrorMsg;
     if (state.startTime.hour > state.endTime.hour) {
@@ -88,14 +89,14 @@ class AgendaCreateCubit extends Cubit<AgendaCreateState> {
       timeErrorMsg = 'Start time should be less than End time';
     }
 
-    errorState = state.copyWith(timeErrorMsg: timeErrorMsg);
+    errorState = errorState.copyWith(timeErrorMsg: timeErrorMsg);
 
-    errorState = state.copyWith(
+    errorState = errorState.copyWith(
         selectedMembersErrorMsg: state.selectedMembersList.isEmpty
             ? 'Select at least 1 Speaker'
             : null);
 
-    errorState = state.copyWith(
+    errorState = errorState.copyWith(
         descErrorMsg:
             state.desc.isEmpty ? 'Description should not be empty' : null);
     emit(errorState);

@@ -3,7 +3,7 @@ import 'package:agenda_app/core/utils/app_colors.dart';
 import 'package:agenda_app/features/agenda/add_agenda/widgets/app_bar_widget.dart';
 import 'package:agenda_app/features/agenda/add_agenda/widgets/body_widget.dart';
 import 'package:agenda_app/features/agenda/agenda_flow.dart';
-import 'package:agenda_app/features/agenda/bloc/agenda_create_cubit.dart';
+import 'package:agenda_app/features/agenda/bloc/agenda_add_cubit.dart';
 import 'package:agenda_app/features/agenda/widgets/widgets.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
@@ -50,12 +50,12 @@ class _CalenderView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final date =
-        context.select<AgendaCreateCubit, DateTime>((bloc) => bloc.state.date);
+        context.select<AgendaAddCubit, DateTime>((bloc) => bloc.state.date);
     return DateInputWidget(
       firstDay: DateTime.now(),
       lastDay: DateTime.now().addYMD(m: 3),
       selectedDay: date,
-      onDaySelected: (_) => context.read<AgendaCreateCubit>().updateDate(_),
+      onDaySelected: (_) => context.read<AgendaAddCubit>().updateDate(_),
     );
   }
 }

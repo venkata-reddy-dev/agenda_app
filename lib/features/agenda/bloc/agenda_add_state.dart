@@ -1,8 +1,8 @@
-part of 'agenda_create_cubit.dart';
+part of 'agenda_add_cubit.dart';
 
 @freezed
-class AgendaCreateState with _$AgendaCreateState {
-  const factory AgendaCreateState({
+class AgendaAddState with _$AgendaAddState {
+  const factory AgendaAddState({
     required List<MemberModel> membersList,
     required List<MemberModel> selectedMembersList,
     String? selectedMembersErrorMsg,
@@ -16,7 +16,7 @@ class AgendaCreateState with _$AgendaCreateState {
     String? timeErrorMsg,
   }) = _Initial;
 
-  const AgendaCreateState._();
+  const AgendaAddState._();
 
   bool get isValid {
     return !(titleErrorMsg != null ||

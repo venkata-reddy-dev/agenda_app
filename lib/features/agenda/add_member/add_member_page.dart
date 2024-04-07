@@ -3,7 +3,7 @@ import 'package:agenda_app/core/models/member_model.dart';
 import 'package:agenda_app/core/utils/app_colors.dart';
 import 'package:agenda_app/features/agenda/add_member/widgets/widgets.dart';
 import 'package:agenda_app/features/agenda/agenda_flow.dart';
-import 'package:agenda_app/features/agenda/bloc/agenda_create_cubit.dart';
+import 'package:agenda_app/features/agenda/bloc/agenda_add_cubit.dart';
 import 'package:agenda_app/features/agenda/widgets/avatars_row_widget.dart';
 import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
@@ -67,9 +67,8 @@ class _SelectedMembersAvatarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final selectedMembers =
-        context.select<AgendaCreateCubit, List<MemberModel>>(
-            (bloc) => bloc.state.selectedMembersList);
+    final selectedMembers = context.select<AgendaAddCubit, List<MemberModel>>(
+        (bloc) => bloc.state.selectedMembersList);
 
     if (selectedMembers.isEmpty) {
       return Container(
@@ -104,7 +103,7 @@ class _SelectMembersTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final count = context.select<AgendaCreateCubit, int>(
+    final count = context.select<AgendaAddCubit, int>(
         (bloc) => bloc.state.selectedMembersList.length);
     final msg = count > 0 ? 'Select Member ($count)' : 'Select Member';
     return Text(
