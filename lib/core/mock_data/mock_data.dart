@@ -39,8 +39,8 @@ class MockData {
     );
     return AgendaModel(
       date: date,
-      title: 'Title is ${mockName()}',
-      description: 'Description is ${mockName()}',
+      title: 'Title is ${mockName()} and some title',
+      description: 'Description is ${mockName()} and some desc and some desc',
       startTime: timeOfDay,
       endTime: TimeOfDay(
         hour: timeOfDay.hour + 1,

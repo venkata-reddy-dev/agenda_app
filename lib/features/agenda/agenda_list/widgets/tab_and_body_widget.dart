@@ -1,4 +1,5 @@
 import 'package:agenda_app/core/extentions/extentions.dart';
+import 'package:agenda_app/core/utils/app_colors.dart';
 import 'package:agenda_app/features/agenda/agenda_list/widgets/widgets.dart';
 import 'package:agenda_app/features/agenda/bloc/agenda_flow_cubit.dart';
 import 'package:flutter/material.dart';
@@ -19,14 +20,14 @@ class TabAndBodyWidget extends StatelessWidget {
           TabBar(
             tabAlignment: TabAlignment.start,
             indicatorSize: TabBarIndicatorSize.tab,
-            dividerColor: Colors.black12,
+            dividerColor: AppColors.divider,
             dividerHeight: 2,
+            indicatorColor: AppColors.blue,
             isScrollable: true,
             tabs: state.tabs
                 .map((e) => Text(
                       '   Day ${e.id}   ',
-                      style:
-                          context.textTheme.bodyLarge?.copyWith(fontSize: 20),
+                      style: context.textTheme.bodyLarge,
                     ))
                 .toList(),
           ),

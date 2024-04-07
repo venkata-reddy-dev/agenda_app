@@ -15,6 +15,32 @@ enum AgendaNavState {
   addMembers,
 }
 
+class AgendaFlow extends StatelessWidget {
+  const AgendaFlow._();
+
+  static Route<AgendaNavState> route() {
+    return MaterialPageRoute(builder: (_) => const AgendaFlow._());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => sl<AgendaFlowCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<AgendaCreateCubit>(),
+        )
+      ],
+      child: const FlowBuilder(
+        state: AgendaNavState.initial,
+        onGeneratePages: onGenerateOnboardingPages,
+      ),
+    );
+  }
+}
+
 List<Page<dynamic>> onGenerateOnboardingPages(
   AgendaNavState state,
   List<Page<dynamic>> pages,
@@ -31,31 +57,6 @@ List<Page<dynamic>> onGenerateOnboardingPages(
         AddMemberPage.page(),
       ],
   };
-}
-
-class AgendaFlow extends StatelessWidget {
-  const AgendaFlow._();
-
-  static Route<AgendaNavState> route() {
-    return MaterialPageRoute(builder: (_) => const AgendaFlow._());
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => sl<AgendaFlowCubit>(),
-          ),
-          BlocProvider(
-            create: (context) => sl<AgendaCreateCubit>(),
-          )
-        ],
-        child: const FlowBuilder(
-          state: AgendaNavState.initial,
-          onGeneratePages: onGenerateOnboardingPages,
-        ));
-  }
 }
 
 class MyPage<T> extends Page<T> {

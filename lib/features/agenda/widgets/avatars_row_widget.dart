@@ -1,4 +1,5 @@
 import 'package:agenda_app/core/extentions/extentions.dart';
+import 'package:agenda_app/core/utils/app_colors.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
@@ -78,11 +79,11 @@ class AvatarsRowWidget extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     child: CircleAvatar(
                       radius: (avatarWidth / 2) * countInfoWidthPercentage,
-                      backgroundColor: Colors.blue,
+                      backgroundColor: AppColors.blue,
                       child: Text(
                         '+${avatarUrlList.length - finalSafeSteps}',
-                        style: context.textTheme.bodySmall
-                            ?.copyWith(color: Colors.white),
+                        style: context.textTheme.bodyMedium
+                            ?.copyWith(color: AppColors.white),
                       ),
                     ),
                   ),
