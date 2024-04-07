@@ -69,7 +69,7 @@ class _TitleInputWidget extends StatelessWidget {
 }
 
 class _DescInputWidget extends StatelessWidget {
-  const _DescInputWidget({super.key});
+  const _DescInputWidget();
 
   @override
   Widget build(BuildContext context) {

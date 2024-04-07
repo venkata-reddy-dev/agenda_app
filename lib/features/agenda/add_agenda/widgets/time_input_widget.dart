@@ -34,7 +34,7 @@ class TimeInputWidget extends StatelessWidget {
 }
 
 class _StartTimeInputWidget extends StatelessWidget {
-  const _StartTimeInputWidget({super.key});
+  const _StartTimeInputWidget();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class _StartTimeInputWidget extends StatelessWidget {
 }
 
 class _EndTimeInputWidget extends StatelessWidget {
-  const _EndTimeInputWidget({super.key});
+  const _EndTimeInputWidget();
 
   @override
   Widget build(BuildContext context) {

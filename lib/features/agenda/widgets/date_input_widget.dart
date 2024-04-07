@@ -120,6 +120,7 @@ class _DateInputWidgetState extends State<DateInputWidget> {
                   ),
                 );
               }
+              return null;
             },
           ),
         ),
